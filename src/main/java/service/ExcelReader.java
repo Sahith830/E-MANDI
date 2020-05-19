@@ -13,12 +13,26 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 public class ExcelReader {
 
-	public boolean validateCredentials(String email, String pass) throws IOException {
+	public boolean validateCredentials(String email, String pass,int prof) throws IOException {
 		
 		String temp = "";
-		int i=0,j=0,count = 0;
+		int j=0,count = 0;
+		File file = null;
+		switch(prof) {
+		case 1:
+			file = new File("C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\ProducerExcel.xls");
+			break;
+		case 2:
+			file = new File("C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\WholesalerExcel.xls");
+			break;
+		case 3:
+			file = new File("C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\RetailerExcel.xls");
+			break;
+		case 4 :
+			file = new File("C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\CivilianExcel.xls");
+			break;
+		}
 		
-		File file = new File("C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\AdminExcel.xls");
 		FileInputStream fis = new FileInputStream(file);
 		Workbook workbook = new HSSFWorkbook(fis);
 		System.out.println(workbook);
@@ -42,11 +56,10 @@ public class ExcelReader {
 					break;
 				}
 			}
-			i++;
 		}
+		workbook.close();
 		if(count == 2)
 			return true;
-		workbook.close();
 		return false;
 	}
 

@@ -16,27 +16,14 @@ public class StakeHoldersLogin
 		System.out.print("Enter Your Password : ");
 		
 		String pass = sc.nextLine();
-		
 		h.put(email , pass );
 		ExcelReader vc = new ExcelReader();
 		System.out.println("\n1:Farmer\n2.Wholesaler\n3.Retailer\n4.Civilian\nEnter your profession :");
 		int prof=sc.nextInt();
-		if(vc.validateCredentials(email,pass)) 
+		if(vc.validateCredentials(email,pass,prof)) 
 		{
 			System.out.println("Logged in Successfully");
-			switch(prof)
-			{
-			case 1: System.out.println("Congo!!! You are Logged in as a Farmer");
-				break;
-			case 2:System.out.println("Congo!!! You are Logged in as a Wholesaler");
-				break;
-			case 3:System.out.println("Congo!!! You are Logged in as a Retailer");
-				break;
-			case 4:System.out.println("Congo!!! You are Logged in as a Civilian");
-				break;
-			default:System.out.println("please try logging in again !");
-			
-			}
+			//bidding code
 		}
 		else 
 		{
