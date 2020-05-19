@@ -11,17 +11,17 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;  
 
 
-public class ExcelGenerator 
+public class WholesalerExcelGenerator 
 {
-	String filename="C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\AdminExcel.xls";
-	int i=1;
+	String filename="C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\WholesalerExcel.xls";
 	FileOutputStream out;
 	public HSSFWorkbook  excelGenerate(Register register, List<Register> list) throws IOException 
 	{
 		try 
 		{
-			HSSFWorkbook  hwb = new HSSFWorkbook ();
-			HSSFSheet  sheet=hwb.createSheet("AdminDetails");
+			
+			HSSFWorkbook  workbook = new HSSFWorkbook ();
+			HSSFSheet  sheet=workbook.createSheet("WholesalerDetails");
 			Row row=sheet.createRow(0);
 			
 			row.createCell(0).setCellValue("Email-Id");
@@ -33,17 +33,18 @@ public class ExcelGenerator
 		 	
 			for(Register fillSheet: list) 
 			{ 
-		      	Row nextRows = sheet.createRow(i);
-		      	nextRows.createCell(0).setCellValue(fillSheet.getUserName());
-		      	nextRows.createCell(1).setCellValue(fillSheet.getEmail());
-		      	nextRows.createCell(2).setCellValue(fillSheet.getPassword());
-		      	nextRows.createCell(3).setCellValue(fillSheet.getConfirmPassword());
-		      	nextRows.createCell(4).setCellValue(fillSheet.getMobile());  
+				int rowSize = sheet.getPhysicalNumberOfRows() + 1;
+		      	Row nextRows = sheet.createRow(rowSize++);
+		      	nextRows.createCell(0).setCellValue(fillSheet.getEmail());
+		      	nextRows.createCell(1).setCellValue(fillSheet.getPassword());
+		      	nextRows.createCell(2).setCellValue(fillSheet.getConfirmPassword());
+		      	nextRows.createCell(3).setCellValue(fillSheet.getMobile());  
+		      	nextRows.createCell(4).setCellValue(fillSheet.getUserName());
       	  	}
 
 			out = new FileOutputStream(filename);
-			hwb.write(out);
-			return hwb;
+			workbook.write(out);
+			return workbook;
 		}
 		catch (Exception e) 
 		{

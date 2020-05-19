@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import service.ExcelGenerator;
+import service.AdminExcelGenerator;
 
 /*The Register class details are get and set here in AdminRegister and validations are done in 
 UnamePwdValidation of utility package
@@ -19,7 +19,7 @@ public class AdminRegister
 		UnamePwdValidation validate = new UnamePwdValidation();
 		try(Scanner scanner = new Scanner(System.in))
 		{
-			System.out.println("Hellooo..! Welcome to E-MANDI \n You are registering your details as an Adminstrator \n");
+			System.out.println("Hellooo..! Welcome to E-MANDI \nYou are registering your details as an Adminstrator \n");
 			System.out.println("Enter Your Name: \n");
 			String userName = scanner.nextLine();
 			
@@ -45,7 +45,7 @@ public class AdminRegister
 				printData(register);
 				List<Register> list = new ArrayList<Register>();
 				//Register register1 = new Register(userName, email, password, confirmPassword, mobile);
-				ExcelGenerator excel = new ExcelGenerator();
+				AdminExcelGenerator excel = new AdminExcelGenerator();
 				list.add(register);
 				excel.excelGenerate(register, list); 
 				System.out.println("Details are stored in Excel..");

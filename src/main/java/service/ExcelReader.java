@@ -5,21 +5,24 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 
 public class ExcelReader {
 
 	public boolean validateCredentials(String email, String pass) throws IOException {
-
-		String[][] excelvalues = null;
-		int i=0,j=0;
-		//File xssfile = new File("C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\AdminExcel.xls");
-		//FileInputStream streamobj = new FileInputStream(xssfile);
-		XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream("C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\AdminExcel.xls"));
-		XSSFSheet sheet = workbook.getSheetAt(0);
+		
+		String temp = "";
+		int i=0,j=0,count = 0;
+		
+		File file = new File("C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\AdminExcel.xls");
+		FileInputStream fis = new FileInputStream(file);
+		Workbook workbook = new HSSFWorkbook(fis);
+		System.out.println(workbook);
+		HSSFSheet sheet = (HSSFSheet) workbook.getSheetAt(0);
 		Iterator<Row> itr = sheet.iterator();
 		while(itr.hasNext()) {
 			Row row = itr.next();
@@ -27,7 +30,13 @@ public class ExcelReader {
 			j = 0 ;
 			while(itrcell.hasNext()) {
 				Cell cell = itrcell.next();
-				excelvalues[i][j] = cell.getStringCellValue();
+				temp = cell.getStringCellValue();
+				if(temp.equals(email)) {
+					count++;
+				}
+				if(temp.equals(pass)) {
+					count++;
+				}
 				j++;
 				if(j>1) {
 					break;
@@ -35,14 +44,8 @@ public class ExcelReader {
 			}
 			i++;
 		}
-		while(i>=0) {
-			if(excelvalues[i][0].equals(email) && excelvalues[i][1].equals(pass))
-			{
-				return true;
-			}
-			i--;
-		}
-		
+		if(count == 2)
+			return true;
 		workbook.close();
 		return false;
 	}
