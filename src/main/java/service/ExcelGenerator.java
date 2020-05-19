@@ -1,0 +1,54 @@
+package service;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+import model.Register;
+
+//import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.hssf.usermodel.HSSFSheet;  
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;  
+
+
+public class ExcelGenerator 
+{
+	String filename="C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\AdminExcel.xls";
+	int i=1;
+	FileOutputStream out;
+	public HSSFWorkbook  excelGenerate(Register register, List<Register> list) throws IOException 
+	{
+		try 
+		{
+			HSSFWorkbook  hwb = new HSSFWorkbook ();
+			HSSFSheet  sheet=hwb.createSheet("AdminDetails");
+			Row row=sheet.createRow(0);
+			
+			row.createCell(0).setCellValue("Email-Id");
+			row.createCell(1).setCellValue("Password");
+			row.createCell(2).setCellValue("confirm Password");
+			row.createCell(3).setCellValue("Mobile");
+			row.createCell(4).setCellValue("UserName");
+			
+		 	
+			for(Register fillSheet: list) 
+			{ 
+		      	Row nextRows = sheet.createRow(i);
+		      	nextRows.createCell(0).setCellValue(fillSheet.getUserName());
+		      	nextRows.createCell(1).setCellValue(fillSheet.getEmail());
+		      	nextRows.createCell(2).setCellValue(fillSheet.getPassword());
+		      	nextRows.createCell(3).setCellValue(fillSheet.getConfirmPassword());
+		      	nextRows.createCell(4).setCellValue(fillSheet.getMobile());  
+      	  	}
+
+			out = new FileOutputStream(filename);
+			hwb.write(out);
+			return hwb;
+		}
+		catch (Exception e) 
+		{
+				e.printStackTrace();
+		}
+		return null;
+	}
+}
