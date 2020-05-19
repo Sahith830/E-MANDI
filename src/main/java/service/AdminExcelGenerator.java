@@ -37,8 +37,8 @@ public class AdminExcelGenerator
 				fis.close();
 				for(Register fillSheet: list) 
 				{ 
-					int rowSize = sheet.getPhysicalNumberOfRows() + 1;
-			      	Row nextRows = sheet.createRow(rowSize++);
+					int rowSize = sheet.getPhysicalNumberOfRows();
+			      	Row nextRows = sheet.createRow(rowSize);
 			      	nextRows.createCell(0).setCellValue(fillSheet.getEmail());
 			      	nextRows.createCell(1).setCellValue(fillSheet.getPassword());
 			      	nextRows.createCell(2).setCellValue(fillSheet.getConfirmPassword());
@@ -76,11 +76,11 @@ public class AdminExcelGenerator
 				for(Register fillSheet: list) 
 				{ 
 			      	Row nextRows = sheet.createRow(i);
-			      	nextRows.createCell(0).setCellValue(fillSheet.getUserName());
-			      	nextRows.createCell(1).setCellValue(fillSheet.getEmail());
-			      	nextRows.createCell(2).setCellValue(fillSheet.getPassword());
-			      	nextRows.createCell(3).setCellValue(fillSheet.getConfirmPassword());
-			      	nextRows.createCell(4).setCellValue(fillSheet.getMobile());  
+			      	nextRows.createCell(0).setCellValue(fillSheet.getEmail());
+			      	nextRows.createCell(1).setCellValue(fillSheet.getPassword());
+			      	nextRows.createCell(2).setCellValue(fillSheet.getConfirmPassword());
+			      	nextRows.createCell(3).setCellValue(fillSheet.getMobile());  
+			      	nextRows.createCell(4).setCellValue(fillSheet.getUserName());
 	      	  	}
 	
 				out = new FileOutputStream(filename);
