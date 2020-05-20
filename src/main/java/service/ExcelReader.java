@@ -18,43 +18,52 @@ public class ExcelReader {
 		String temp = "";
 		int j=0,count = 0;
 		File file = null;
-		switch(prof) {
+		switch(prof) 
+		{
+		case 0:
+			file = new File("C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\AdminExcel.xls");
+			break;
 		case 1:
-			file = new File("C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\ProducerExcel.xls");
+			file = new File("C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\ProducerExcel.xls");
 			break;
 		case 2:
-			file = new File("C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\WholesalerExcel.xls");
+			file = new File("C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\WholesalerExcel.xls");
 			break;
 		case 3:
-			file = new File("C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\RetailerExcel.xls");
+			file = new File("C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\RetailerExcel.xls");
 			break;
 		case 4 :
-			file = new File("C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\CivilianExcel.xls");
+			file = new File("C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\CivilianExcel.xls");
 			break;
 		}
 		
 		FileInputStream fis = new FileInputStream(file);
 		Workbook workbook = new HSSFWorkbook(fis);
-		System.out.println(workbook);
 		HSSFSheet sheet = (HSSFSheet) workbook.getSheetAt(0);
 		Iterator<Row> itr = sheet.iterator();
-		while(itr.hasNext()) {
+		while(itr.hasNext()) 
+		{
 			Row row = itr.next();
 			Iterator<Cell> itrcell = row.cellIterator();
 			j = 0 ;
-			while(itrcell.hasNext()) {
+			while(itrcell.hasNext()) 
+			{
 				Cell cell = itrcell.next();
 				temp = cell.getStringCellValue();
-				if(temp.equals(email)) {
+				if(temp.equals(email)) 
+				{
 					count++;
 				}
-				if(temp.equals(pass)) {
+				if(temp.equals(pass)) 
+				{
 					count++;
 				}
 				j++;
-				if(j>1) {
+				
+				if(j>1) 
+				{
 					break;
-				}
+				} 
 			}
 		}
 		workbook.close();

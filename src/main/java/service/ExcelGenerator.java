@@ -17,11 +17,10 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class ExcelGenerator 
 {
-	//String filename="C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\CivilianExcel.xls";
 	int i=1;
 	Workbook  workbook = null;
 	FileOutputStream out;
-	public HSSFWorkbook  excelGenerate(Register register, List<Register> list,String filename,String Sheetname) throws IOException 
+	public HSSFWorkbook excelGenerate(Register register, List<Register> list,String filename,String Sheetname) throws IOException 
 	{
 		File checkFile = new File(filename);
 		if(checkFile.exists()) 
@@ -37,7 +36,7 @@ public class ExcelGenerator
 				for(Register fillSheet: list) 
 				{ 
 					int rowSize = sheet.getPhysicalNumberOfRows();
-			      	Row nextRows = sheet.createRow(rowSize);
+			      	Row nextRows = sheet.createRow(rowSize++);
 			      	nextRows.createCell(0).setCellValue(fillSheet.getEmail());
 			      	nextRows.createCell(1).setCellValue(fillSheet.getPassword());
 			      	nextRows.createCell(2).setCellValue(fillSheet.getConfirmPassword());
@@ -96,5 +95,3 @@ public class ExcelGenerator
 		
     } //close method
 } //close class
-
-

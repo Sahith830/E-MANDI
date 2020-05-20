@@ -30,19 +30,19 @@ public class StakeHolderRegister
 			switch(choice)
 			{
 				case 1: System.out.println("Hello Producer..! Please fill the formalities\n");
-				        filename = "C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\ProducerExcel.xls";
+				        filename = "C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\ProducerExcel.xls";
 				        sheetname = "ProducerDetails";
 						break;
 				case 2: System.out.println("Hello Wholesaler..! Please fill the formalities\n");
-		        		filename = "C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\WholesalerExcel.xls";
+		        		filename = "C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\WholesalerExcel.xls";
 		        		sheetname = "WholesalerDetails";
 						break;
 				case 3: System.out.println("Hello Retailer..! Please fill the formalities\n");
-		        		filename = "C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\RetailerExcel.xls";
+		        		filename = "C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\RetailerExcel.xls";
 		        		sheetname = "RetailerDetails";
 						break;
 				case 4: System.out.println("Hello Civilian..! Please fill the formalities\n");
-		        		filename = "C:\\Users\\sahith chowdary\\eclipse-workspace\\E-MANDI\\SHEETS\\CivilianExcel.xls";
+		        		filename = "C:\\Users\\YASHASREE\\eclipse-workspace\\mandi\\SHEETS\\CivilianExcel.xls";
 		        		sheetname = "CivilianDetails";
 						break;	
 				default: System.out.println("Invalid Entry!" );
@@ -81,7 +81,6 @@ public class StakeHolderRegister
 			register.setMobile(mobile);
 			printData(register);
 			List<Register> list = new ArrayList<Register>();
-			//ProducerExcelGenerator excel = new ProducerExcelGenerator();
 			ExcelGenerator excel = new ExcelGenerator();
 			list.add(register);
 			excel.excelGenerate(register, list,filename,sheetname); 
@@ -99,7 +98,7 @@ public class StakeHolderRegister
 	
 	public static void printData(Register register)
 	{
-		System.out.println("CHECK YOUR DETAILS: \n ------------------");
+		System.out.println("\nCHECK YOUR DETAILS: \n ------------------");
 		System.out.println("Your Name: " + register.getUserName());
 		System.out.println("Your Email: " + register.getEmail());
 		System.out.println("Your Password: " + register.getPassword());
